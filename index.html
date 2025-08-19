@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EDUCOMMEX - Education | Commerce | Exchange</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #1a1a2e;
+      --secondary: #4e9f3d;
+      --accent: #d8ac9c;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --text: #333333;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--light);
+      color: var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, #16213e 100%);
+      color: white;
+      padding: 80px 0 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    header p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.9;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    /* Navigation */
+    nav {
+      background: var(--primary);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 15px 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      margin-bottom: 0px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 20px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 1.1rem;
+    }
+    nav a:hover {
+      color: var(--secondary);
+      transform: translateY(-2px);
+    }
+    nav a.active {
+      color: white;
+    }
+    .active:hover{
+      color: var(--secondary);
+    }
+    
+    /* Main Content Sections */
+    .main-section {
+      padding: 60px 0;
+      
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.5em;
+      color: var(--primary);
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      margin: 15px auto 0;
+    }
+    /* Education Section */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .subject-card {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .subject-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .subject-card h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+    }
+    .subject-card h3 i {
+      margin-right: 10px;
+      color: var(--secondary);
+    }
+    .subject-card p {
+      margin-bottom: 20px;
+    }
+    .subject-card ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+    .subject-card ul li {
+      margin-bottom: 8px;
+    }
+    /* Commerce Section */
+    .commerce-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .commerce-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .commerce-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .commerce-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: var(--primary);
+    }
+    .commerce-content {
+      padding: 20px;
+    }
+    .commerce-content h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+      font-size: 1.5em;
+    }
+    /* Exchange Section */
+    .exchange-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .exchange-item {
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .exchange-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .exchange-item h3 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+    }
+    .exchange-item h3 i {
+      margin-right: 10px;
+      color: var(--secondary);
+    }
+    /* Video Courses Section - Only place for video content */
+    #video-courses {
+      background-color: #f0f8ff;
+      padding: 60px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    .video-card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .video-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    .video-thumbnail {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      background-color: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .video-thumbnail i {
+      font-size: 3rem;
+      color: var(--primary);
+      opacity: 0.8;
+    }
+    .video-locked {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: rgba(0,0,0,0.7);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+    .video-content {
+      padding: 20px;
+    }
+    .video-content h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .video-content p {
+      margin-bottom: 15px;
+      color: #666;
+    }
+    /* Contact Section */
+    .contact1 {
+      background: #e0e0e0;
+      padding: 60px 0;
+    }
+    .contact1 h2 {
+      text-align: center;
+      font-size: 2.5em;
+      color: var(--primary);
+      margin-bottom: 30px;
+    }
+    .contact1 p {
+      text-align: center;
+      font-size: 1.1em;
+      margin-bottom: 30px;
+    }
+    .contact-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #FF8C00;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+    .contact-btn:hover {
+      background: #FF7000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .contact-btn i {
+      margin-right: 8px;
+      font-size: 1.1em;
+    }
+    .bank-details {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px auto 0;
+      max-width: 600px;
+      border-left: 4px solid var(--secondary);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .cta-button {
+      display: inline-block;
+      background: var(--secondary);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      background-color: orange;
+    }
+    .cta-button:hover {
+      background: purple;
+      transform: translateY(-2px);
+    }
+    /* Footer */
+    .footer {
+      background: var(--primary);
+      color: #ccc;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+    .footer p {
+      margin: 0;
+      font-size: 0.9em;
+    }
+    /* WhatsApp Button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 999;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      
+    }
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    /* Back to top button */
+    .back-btn {
+      position: fixed;
+      bottom: 70px;
+      right: -200px;
+      width: 45px;
+      height: 45px;
+      background: var(--secondary);
+      color: var(--primary);
+      border-radius: 50%;
+      font-size: 1.4rem;
+      border: none;
+      box-shadow: 2px 3px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+      z-index: 1002;
+      transition: all 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .back-btn:hover {
+      background: var(--primary);
+      color: var(--secondary);
+      border: 1px solid var(--secondary);
+    }
+    .back-btn.active {
+      right: 30px;
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2em;
+      }
+      header p {
+        font-size: 1.1em;
+      }
+      .section-title {
+        font-size: 2em;
+      }
+      nav a {
+        margin: 5px 10px;
+        font-size: 1rem;
+      }
+      .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      .contact-btn {
+        width: 90%;
+        justify-content: center;
+      }
+    }
+    @media (max-width: 480px) {
+      header {
+        padding: 60px 0 40px;
+      }
+      header h1 {
+        font-size: 1.8em;
+      }
+      .section-title {
+        font-size: 1.6em;
+      }
+      .subject-card,
+      .commerce-card,
+      .exchange-item,
+      .video-card {
+        padding: 20px;
+      }
+      .whatsapp-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 20px;
+        right: 20px;
+      }
+      .back-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 90px;
+      }
+    }
+    /* Contact & payment box */
+    .contact-box {
+      background: white;
+      border-left: 4px solid #3949ab;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 300px;
+      margin: 30px auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .contact-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 15px;
+    }
+    .contact-btn {
+      background: #3949ab;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .contact-btn i {
+      margin-right: 6px;
+    }
+    .contact-btn:hover {
+      background: #1a237e;
+    }
+    h2 {
+      text-align: center;
+    }
+    a {
+      text-decoration: none;
+      
+    }
+    a:hover {
+      color: var(--secondary);
+      transform: translateY(-2px);
+    }
+    .Edu{
+      margin-bottom: 5px;
+      font-size: 25px;
+    }
+    img{
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- WhatsApp Button -->
+  <a href="https://chat.whatsapp.com/EeTWWpRB8uvDgKDeb92D8m?mode=ac_t" class="whatsapp-btn" target="_blank" aria-label="Join our WhatsApp group">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Back to Top Button -->
+  <button class="back-btn" aria-label="Back to top">↑</button>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h4 class="Edu">EduCommex Diversified Collaboratives</h4>
+      <img src="IMG-20250818-WA0058.jpg" alt="EDUCOMMEX" width="300" height="200">
+      <p>Education | Commerce | Exchange - Uniting diversity through learning, trade, and collaboration</p>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="#education" class="active">Education</a>
+      <a href="#commerce">Commerce</a>
+      <a href="#exchange">Exchange</a>
+      <a href="#video-courses">Coding Courses</a>
+      <a class="ctc" href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Education Section -->
+  <section id="education" class="main-section">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+        Our educational resources are designed to help students excel in their academic pursuits, from secondary school subjects to university preparation.
+      References to what are going to be taking places in the WhatsApp group chat and more.
+      </p>
+
+      <div class="education-grid">
+        <div class="subject-card">
+          <h3><i class="fas fa-book-open"></i> English Language</h3>
+          <p>Comprehensive English language resources covering grammar, comprehension, and literature for SSS3 students.</p>
+          <ul>
+            <li>Grammar and syntax</li>
+            <li>Reading comprehension</li>
+            <li>Essay writing techniques</li>
+            <li>Oral English practice etc.</li>
+          </ul>
+        </div>
+
+        <div class="subject-card">
+          <h3><i class="fas fa-square-root-alt"></i> Mathematics</h3>
+          <p>Master mathematical concepts with our structured lessons and practice problems.</p>
+          <ul>
+            <li>Algebra and equations</li>
+            <li>Geometry and trigonometry</li>
+            <li>Calculus basics</li>
+            <li>Statistics and probability etc.</li>
+          </ul>
+        </div>
+
+        <div class="subject-card">
+          <h3><i class="fas fa-atom"></i> Physics</h3>
+          <p>Understand the fundamental principles of physics through interactive learning.</p>
+          <ul>
+            <li>Mechanics and motion</li>
+            <li>Electricity and magnetism</li>
+            <li>Thermodynamics</li>
+            <li>Modern physics etc.</li>
+          </ul>
+        </div>
+
+        <div class="subject-card">
+          <h3><i class="fas fa-flask"></i> Chemistry</h3>
+          <p>Explore the world of atoms, molecules, and chemical reactions.</p>
+          <ul>
+            <li>Organic chemistry</li>
+            <li>Inorganic chemistry</li>
+            <li>Physical chemistry</li>
+            <li>Laboratory techniques etc.</li>
+          </ul>
+        </div>
+
+        <div class="subject-card">
+          <h3><i class="fas fa-dna"></i> Biology</h3>
+          <p>Discover the science of life with our comprehensive biology resources.</p>
+          <ul>
+            <li>Cell biology</li>
+            <li>Genetics and evolution</li>
+            <li>Human anatomy</li>
+            <li>Ecology etc.</li>
+          </ul>
+        </div>
+
+        <div class="subject-card">
+          <h3><i class="fas fa-graduation-cap fa-2x"></i> University Preparation | Aspirants</h3>
+          <p>Resources to help you prepare for university entrance exams and succeed in higher education.</p>
+          <ul>
+            <li>Entrance exam strategies</li>
+            <li>Study skills</li>
+            <li>Daily News concerning Admission</li>
+            <li>All inclusive Aspirant necessities for admission like.</li>
+            <li>Aspirants can learn a new skill from <strong>EDUCOMMEX WhatsApp group </strong> for sustainability while in school. And that will be done by collaborating with those working in that sector of your desire learning.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commerce Section -->
+  <section id="commerce" class="main-section" style="background-color: #f5f5f5;">
+    <div class="container">
+      <h2 class="section-title">Commerce</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+        Explore opportunities in freelancing, digital services, and entrepreneurial ventures through our commerce platform.
+      </p>
+
+      <div class="commerce-cards">
+        <div class="commerce-card">
+          <div class="commerce-img" style="background-color: #e3f2fd;">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <div class="commerce-content">
+            <h3>Freelancing Services</h3>
+            <p>Connect with skilled freelancers offering services in web development, graphic design, writing, and more.</p>
+            <p>Find opportunities to monetize your skills and build your portfolio.</p>
+            <p>Posting of Freelancing jobs of diversified skills.</p>
+          </div>
+        </div>
+
+        <div class="commerce-card">
+          <div class="commerce-img" style="background-color: #fff3e0;">
+            <i class="fas fa-store"></i>
+          </div>
+          <div class="commerce-content">
+            <h3>E-commerce</h3>
+            <p>Buy and sell goods within our community marketplace.</p>
+            <p>Discover unique products and services from trusted members.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exchange Section -->
+  <section id="exchange" class="main-section">
+    <div class="container">
+      <h2 class="section-title">Exchange</h2>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">
+        Engage in knowledge sharing, skill exchange, and financial opportunities through our exchange platform.
+      </p>
+
+      <div class="exchange-container">
+        <div class="exchange-item">
+          <h3><i class="fas fa-coins"></i> Cryptocurrency Trade</h3>
+          <p>Learn about cryptocurrency trading and investment strategies from experienced traders.</p>
+          <p>Join discussions about market trends, blockchain technology, and digital assets.</p>
+          <p>Connect with like-minded individuals interested in the crypto economy.</p>
+          <p>Exchange | Trading on Currencies.</p>
+        </div>
+
+        <div class="exchange-item">
+          <h3><i class="fas fa-business-time"></i> Business Monetization</h3>
+          <p>Discover strategies to monetize your business and increase profitability.</p>
+          <p>Learn about digital marketing, sales funnels, and customer acquisition.</p>
+          <p>Exchange ideas with other entrepreneurs and business owners.</p>
+          <p>Showcase your business ventures for accessibilities and patronization.</p>
+        </div>
+
+        <div class="exchange-item">
+          <h3><i class="fas fa-lightbulb"></i> Skill Showcase</h3>
+          <p>Showcase your talents and skills to the community.</p>
+          <p>Find collaboration opportunities and potential partnerships to grow your impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coding Courses (Video Courses) Section -->
+  <section id="video-courses" class="video-courses">
+    <h2 class="section-title">Coding Courses</h2>
+    <p style="text-align:center; max-width:800px; margin: 0 auto 30px;">
+      Learn at your own pace with our curated coding courses featuring video tutorials, hands-on projects, and expert guidance.
+    </p>
+    <a href="#contact">
+    <div class="video-grid container">
+      <div class="video-card">
+        <div class="video-thumbnail">
+          <i class="fas fa-play-circle"></i>
+          <div class="video-locked">Order for the course via Whatsapp using the contact info.</div>
+        </div>
+        </a>
+        <div class="video-content">
+          <h3>Full Beginner to Pro Web Development</h3>
+          <p><strong>Master HTML5, CSS, and JavaScript fundamentals with a real-world projects and Deployment. A discount of free website for references and practices will be given after purchasing the course.
+          </strong></p>
+        </div>
+      </div>
+      </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact1">
+    <div class="container">
+      <h2>Contact & Payment</h2>
+      <p>
+        Reach out to us for enquiries, support, or unlocking your paid video courses.
+      </p>
+        <div class="contact-box">
+      <strong>WhatsApp Group:</strong> <a href="https://chat.whatsapp.com/EeTWWpRB8uvDgKDeb92D8m?mode=ac_t" target="_blank">Join Here</a>
+
+      <h3>Bank Details</h3>
+      <strong>Account Name:</strong> Ezenwa Chidera Emmanuel
+      <br>
+      <strong>Account Number:</strong> 8185947780
+      <br>
+      <strong>Bank:</strong> Opay Bank
+      <br>
+
+      <div class="contact-buttons">
+        <a href="tel:+2348185947780" class="contact-btn" target="_blank"><i class="fas fa-phone-alt"></i> Call</a>
+        <a href="mailto:emezch93@gmail.com" class="contact-btn" target="_blank"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://wa.me/2348185947780" target="_blank" class="contact-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://www.facebook.com/share/16wApaqcX4/" target="_blank" class="contact-btn"><i class="fab fa-facebook"></i> Facebook</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 EDUCOMMEX. All rights reserved.</p>
+    <p>Built by <strong>Ezenwa Chidera Emmanuel</strong><a href="https://emezch93.github.io/Portfolio/" target="_blank" style="color:#ccc; text-decoration: underline;"><br>My Portfolio</a></p>
+  </footer>
+  <script>
+    const backBtn = document.querySelector(".back-btn");
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 100) backBtn.classList.add("active");
+      else backBtn.classList.remove("active");
+    });
+    backBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+  </script>
+
+</body>
+</html>
